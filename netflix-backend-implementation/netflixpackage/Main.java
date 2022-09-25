@@ -11,9 +11,59 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		//==================== ShowCollection Testing ====================
+		
+		System.out.println("ShowCollection Testing:");
+		System.out.println();
+		
 		// Create ShowInWeek objects for testing.
 		ShowInWeek topShow1 = new ShowInWeek("2022-09-04", "Films (English)", 1, "Me Time", "N/A", 56560000, 2);
 		ShowInWeek topShow2 = new ShowInWeek("2022-09-04", "Films (English)", 2, "Love in the Villa", "N/A", 41220000, 1);
+		ShowInWeek blankShow = new ShowInWeek();
+		
+		// Test addNewShow method of ShowCollection class.
+		ShowCollection completeShowCollection = new ShowCollection();
+		completeShowCollection.addNewShow(topShow1);
+		completeShowCollection.addNewShow(topShow2);
+		completeShowCollection.addNewShow(blankShow);			// This uses the default constructor, so this show has those default, empty values.
+		
+		// Testing toString and addNewShow methods.
+		System.out.println("Test toString() and addNewShow() methods");
+		System.out.println(completeShowCollection);
+		System.out.println();
+		
+		// Test purgeShow method of ShowCollection class.
+		System.out.println("Test purgeShow method of ShowCollection class");
+		completeShowCollection.purgeShow("Me Time");
+		System.out.println(completeShowCollection);
+		System.out.println();
+		
+		// Test unpurgeShow method of ShowCollection class.
+		System.out.println("Test unpurgeShow method of ShowCollection class");
+		completeShowCollection.unpurgeShow("Me Time");
+		System.out.println(completeShowCollection);
+		System.out.println();
+		
+		
+		//==================== ShowInWeek Testing ====================
+		
+		System.out.println("ShowInWeek Testing:");
+		System.out.println();
+
+		ShowInWeek show1 = new ShowInWeek("2022-09-04", "Films (English)", 3, "I Came By", "N/A", 30790000, 1);
+		ShowInWeek show2 = new ShowInWeek("2022-09-04", "Films (English)", 4, "That's Amor", "N/A", 30790000, 1);
+		ShowInWeek show3 = new ShowInWeek("2022-09-04", "Films (English)", 4, "That's Amor", "N/A", 30790000, 1);
+		
+		System.out.println("Comparing show1 and show2 [expect false]: " + show1.equals(show2));
+		System.out.println("Comparing show2 and show3 [expect true]: " + show2.equals(show3));
+		
+	}
+
+}
+
+
+/* Code Dump
+
 		ShowInWeek topShow3 = new ShowInWeek("2022-09-04", "Films (English)", 3, "I Came By", "N/A", 30790000, 1);
 		ShowInWeek topShow4 = new ShowInWeek("2022-09-04", "Films (English)", 4, "That's Amor", "N/A", 30790000, 1);
 		ShowInWeek topShow5 = new ShowInWeek("2022-09-04", "Films (English)", 5, "Look Both Ways", "N/A", 30790000, 1);
@@ -32,32 +82,27 @@ public class Main {
 		ShowInWeek topShow18 = new ShowInWeek("2022-09-04", "Films (Non-English)", 8, "Royalteen", "N/A", 3040000, 3);
 		ShowInWeek topShow19 = new ShowInWeek("2022-09-04", "Films (Non-English)", 9, "Rise of the Legend", "N/A", 2630000, 1);
 		ShowInWeek topShow20 = new ShowInWeek("2022-09-04", "Films (Non-English)", 10, "Watch Out, We're Mad", "N/A", 2580000, 2);
-		
-		// Add the ShowInWeek objects to the collection class.
-		ArrayList<ShowInWeek> completeShowCollection = new ArrayList<ShowInWeek>();
-		completeShowCollection.add(topShow1);
-		completeShowCollection.add(topShow2);
-//		completeShowCollection.add(topShow3);
-//		completeShowCollection.add(topShow4);
-//		completeShowCollection.add(topShow5);
-//		completeShowCollection.add(topShow6);
-//		completeShowCollection.add(topShow7);
-//		completeShowCollection.add(topShow8);
-//		completeShowCollection.add(topShow9);
-//		completeShowCollection.add(topShow10);
-//		completeShowCollection.add(topShow11);
-//		completeShowCollection.add(topShow12);
-//		completeShowCollection.add(topShow13);
-//		completeShowCollection.add(topShow14);
-//		completeShowCollection.add(topShow15);
-//		completeShowCollection.add(topShow16);
-//		completeShowCollection.add(topShow17);
-//		completeShowCollection.add(topShow18);
-//		completeShowCollection.add(topShow19);
-//		completeShowCollection.add(topShow20);
-		
-		System.out.println(completeShowCollection);
-		
-	}
 
-}
+
+
+
+		completeShowCollection.addNewShow(topShow3);
+		completeShowCollection.addNewShow(topShow4);
+		completeShowCollection.addNewShow(topShow5);
+		completeShowCollection.addNewShow(topShow6);
+		completeShowCollection.addNewShow(topShow7);
+		completeShowCollection.addNewShow(topShow8);
+		completeShowCollection.addNewShow(topShow9);
+		completeShowCollection.addNewShow(topShow10);
+		completeShowCollection.addNewShow(topShow11);
+		completeShowCollection.addNewShow(topShow12);
+		completeShowCollection.addNewShow(topShow13);
+		completeShowCollection.addNewShow(topShow14);
+		completeShowCollection.addNewShow(topShow15);
+		completeShowCollection.addNewShow(topShow16);
+		completeShowCollection.addNewShow(topShow17);
+		completeShowCollection.addNewShow(topShow18);
+		completeShowCollection.addNewShow(topShow19);
+		completeShowCollection.addNewShow(topShow20);
+
+*/

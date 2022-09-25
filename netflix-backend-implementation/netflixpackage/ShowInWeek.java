@@ -1,5 +1,7 @@
 package netflixpackage;
 
+import java.util.Iterator;
+
 public class ShowInWeek {
 
 	// Private data members
@@ -102,9 +104,9 @@ public class ShowInWeek {
 	}
 	
 	// Week variable, show variable, concatenate
-	public boolean equals(String week, String showTitles) {
+	public boolean equals(ShowInWeek show) {
 		
-		return (this.week + this.showTitles) == week + showTitles;			// This concatenation may not be correct...
+		return ((getWeek()+getShowTitles()).equals(show.getWeek()+show.getShowTitles()));			// May need to work on this...
 		
 	}
 	

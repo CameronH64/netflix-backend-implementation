@@ -1,6 +1,5 @@
 package netflixpackage;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -27,12 +26,24 @@ public class ShowCollection {
 		showStorage.add(newShowInWeek);
 	}
 	
-	public void purgeShow() {
+	public void purgeShow(String showToPurge) {
 		// Append " [PURGED]" to end of each show title.
+		
+		for (ShowInWeek showInWeek : showStorage) {
+			if (showInWeek.getShowTitles() == showToPurge) {
+				showInWeek.setShowTitles(showInWeek.getShowTitles() + " [PURGED]");		
+			}
+		}
 	}
 	
-	public void unpurgeShow() {
+	public void unpurgeShow(String showToUnpurge) {
 		// Do the opposite of purgeShow();
+		
+		for (ShowInWeek showInWeek : showStorage) {
+			if (showInWeek.getShowTitles() == (showToUnpurge + " [PURGED]")) {
+				showInWeek.setShowTitles(showInWeek.getShowTitles().replace(" [PURGED]", ""));		
+			}
+		}
 	}
 	
 	public void editShow() {
@@ -65,24 +76,24 @@ public class ShowCollection {
 		
 	}
 	
-	public ShowInWeek getShows() {
+	public ShowInWeek getShows(ShowCollection shows) {
 		
 		ShowInWeek test = new ShowInWeek();
 		
-		return test;
+		return test;				// Return needs to be a ShowCollection as well (a subset collection).
 		
 	}
 	
 	public String toString() {
 		
-		String toReturn = "ShowCollection name here: [";
+		String toReturn = "ShowCollection: [\n";
 		
 		for (ShowInWeek showInWeek : showStorage) {
 			toReturn += showInWeek.toString()+"\n";
 		}
 		
+		toReturn += "]";
 		return toReturn;
-		
 	}
 
 }
