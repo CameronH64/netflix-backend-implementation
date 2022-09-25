@@ -1,0 +1,24 @@
+student
+Mary Jones
+123-45-6789
+3.7
+student
+Joe Smith
+323-23-5666
+2.5
+instructor
+Alven Chipmonk
+212-33-6978
+ac@uca.edu
+student
+John Dirk
+623-34-2399
+3.2
+student
+Holly Henley
+345-67-8934
+4.0
+instructor
+Doris Day
+658-45-9234
+dd@uca.edu
