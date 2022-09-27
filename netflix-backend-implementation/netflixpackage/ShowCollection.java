@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 public class ShowCollection {
 	
-	private ArrayList<ShowInWeek> showStorage;
+	private ArrayList<ShowInWeek> showStorage = new ArrayList<ShowInWeek>();
 	
 	public ShowCollection() {
 		showStorage = new ArrayList<ShowInWeek>();
@@ -30,49 +30,95 @@ public class ShowCollection {
 		// Append " [PURGED]" to end of each show title.
 		
 		for (ShowInWeek showInWeek : showStorage) {
-			if (showInWeek.getShowTitles() == showToPurge) {
+			if (showInWeek.getShowTitles().equals(showToPurge)) {
 				showInWeek.setShowTitles(showInWeek.getShowTitles() + " [PURGED]");		
 			}
 		}
 	}
 	
 	public void unpurgeShow(String showToUnpurge) {
-		// Do the opposite of purgeShow();
+		// Remove " [PURGED]" from the end of each show title (that is chosen to be unpurged);
 		
 		for (ShowInWeek showInWeek : showStorage) {
-			if (showInWeek.getShowTitles() == (showToUnpurge + " [PURGED]")) {
+			if (showInWeek.getShowTitles().equals(showToUnpurge + " [PURGED]")) {
 				showInWeek.setShowTitles(showInWeek.getShowTitles().replace(" [PURGED]", ""));		
 			}
 		}
+	
 	}
 	
-	public void editShow() {
+	public String suggestRandomShow() {
 		
+		// Generate a number the size of the ShowCollection instance.
+		Random random = new Random();
 		
+		// Then, get the length of the ShowCollection.
+		// With this length, get a random number with a maximum of the ShowCollection length.
+//		System.out.println("Count: " + getCollectionLength());					// For convenience, I made a separate method for this.		
+		int length_random_number = random.nextInt(getCollectionLength());
+		String suggestedShow = showStorage.get(length_random_number).getShowTitles();		// Use the random number to access that index.
 		
-		// Return an ArrayList
-	}
-	
-	public void suggestRandomShow(ShowCollection collection) {
-		
-//		Random rand = new Random();
-		
-		// Get the size of this current instance.
-//		Iterator iterator = collection.iterator();
+		return suggestedShow;
 		
 	}
 	
 	// Suggest based on a single given show.
-	public void suggestPredictive(ShowInWeek show) {
+	public String suggestPredictive(ShowInWeek show) {
 		
-		// Suggest a show from the pool of shows in this instance.
+		// Chose to ensure language.
+		
+		// Determine if show is english or non-english.
+		// Create an ArrayList object of only same category as given show.
+		// This will be used as a pool to pull from later.
+		ArrayList<ShowInWeek> categoryList = new ArrayList<ShowInWeek>();		
+		int count = 0;
+		
+		// Filter out english or non-english
+		if (show.getCategory().contains("(English)")) {
+			for (ShowInWeek showInWeek : showStorage) {
+				if (showInWeek.getCategory().contains("(English)")) {
+					categoryList.add(showInWeek);
+					count++;
+				}
+			}
+			
+		} else if (show.getCategory().contains("(Non-English)")) {
+			for (ShowInWeek showInWeek : showStorage) {
+				if (showInWeek.getCategory().contains("(Non-English)")) {
+					categoryList.add(showInWeek);
+					count++;
+				}
+			}
+		}
+		
+		// Generate a number the size of the ShowCollection instance.
+		Random random = new Random();
+		
+		// Then, get the length of the categoryList, english or not.
+		// With this length, get a random number with that as its maximum.
+		int length_random_number = random.nextInt(count);
+		String suggestedShow = categoryList.get(length_random_number).getShowTitles();		// Use the random number to access that index.
+		
+		return suggestedShow;
 		
 	}
 
 	// Suggest based on a set of shows.
-	public void suggestPredictive(ShowCollection shows) {
+	public String suggestPredictive(ShowCollection shows) {
 		
-		// Suggest a show from the pool of shows in this instance.
+		// Take average of same ratings, and ditto above.
+		
+		// Generate a number the size of the ShowCollection instance.
+		System.out.println("Start of random suggestion method.");
+		Random random = new Random();
+		
+		// Then, get the length of the ShowCollection.
+		// With this length, get a random number with a maximum of the ShowCollection length.
+//		System.out.println("Count: " + getCollectionLength());					// For convenience, I made a separate method for this.		
+		int length_random_number = random.nextInt(getCollectionLength());
+		String suggestedShow = showStorage.get(length_random_number).getShowTitles();		// Use the random number to access that index.
+		
+		return suggestedShow;
 		
 	}
 	
@@ -84,6 +130,14 @@ public class ShowCollection {
 		
 	}
 	
+	public ArrayList<ShowInWeek> getShowStorage() {
+		return showStorage;
+	}
+
+	public void setShowStorage(ArrayList<ShowInWeek> showStorage) {
+		this.showStorage = showStorage;
+	}
+
 	public String toString() {
 		
 		String toReturn = "ShowCollection: [\n";
@@ -94,6 +148,18 @@ public class ShowCollection {
 		
 		toReturn += "]";
 		return toReturn;
+	}
+	
+	public int getCollectionLength() {
+				
+		int collectionLength = 0;
+
+		for (ShowInWeek showInWeek : showStorage) {
+			collectionLength++;
+		}
+
+		return collectionLength;
+		
 	}
 
 }
