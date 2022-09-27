@@ -76,7 +76,7 @@ public class ShowCollection {
 		// Filter out english or non-english
 		if (show.getCategory().contains("(English)")) {
 			for (ShowInWeek showInWeek : showStorage) {
-				if (showInWeek.getCategory().contains("(English)")) {
+				if (showInWeek.getCategory().contains("(English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
 					categoryList.add(showInWeek);
 					count++;
 				}
@@ -84,7 +84,7 @@ public class ShowCollection {
 			
 		} else if (show.getCategory().contains("(Non-English)")) {
 			for (ShowInWeek showInWeek : showStorage) {
-				if (showInWeek.getCategory().contains("(Non-English)")) {
+				if (showInWeek.getCategory().contains("(Non-English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
 					categoryList.add(showInWeek);
 					count++;
 				}

@@ -13,9 +13,6 @@ public class Main {
 		
 		//==================== ShowCollection Testing ====================
 		
-		System.out.println("ShowCollection Testing:");
-		System.out.println();
-		
 		// Create ShowInWeek objects for testing.
 		ShowInWeek topShow1 = new ShowInWeek("2022-09-04", "Films (English)", 1, "Me Time", "N/A", 56560000, 2);
 		ShowInWeek topShow2 = new ShowInWeek("2022-09-04", "Films (English)", 2, "Love in the Villa", "N/A", 41220000, 1);
@@ -68,31 +65,33 @@ public class Main {
 		System.out.println();
 		
 		// Test purgeShow method of ShowCollection class.
-		System.out.println("================= Test purgeShow method of ShowCollection class =================");
-		completeShowCollection.purgeShow("Me Time");
-		System.out.println(completeShowCollection);
-		System.out.println();
+//		System.out.println("================= Test purgeShow method of ShowCollection class =================");
+//		completeShowCollection.purgeShow("Me Time");
+//		System.out.println(completeShowCollection);
+//		System.out.println();
 		
 		// Test unpurgeShow method of ShowCollection class.
-		System.out.println("================= Test unpurgeShow method of ShowCollection class =================");
-		completeShowCollection.unpurgeShow("Me Time");
-		System.out.println(completeShowCollection);
-		System.out.println();
+//		System.out.println("================= Test unpurgeShow method of ShowCollection class =================");
+//		completeShowCollection.unpurgeShow("Me Time");
+//		System.out.println(completeShowCollection);
+//		System.out.println();
 
 		// Test the suggestRandomShow
-		System.out.println("================= Test suggest random show =================");
-		System.out.println(completeShowCollection.suggestRandomShow());
-		System.out.println();
+//		System.out.println("================= Test suggest random show =================");
+//		System.out.println(completeShowCollection.suggestRandomShow());
+//		System.out.println();
 		
 		// Test the suggest prediction given a single ShowInWeek.
 		System.out.println("================= Test suggest prediction single show =================");
-		System.out.println(completeShowCollection.suggestPredictive(topShow1));
+		for(int i = 0; i < 100; i++) {
+			System.out.println(completeShowCollection.suggestPredictive(topShow1));
+		}
 		System.out.println();
 		
 		// Test the suggest prediction given a ShowCollection.
-		System.out.println("================= Test suggest prediction show collection =================");
-		System.out.println(completeShowCollection.suggestPredictive(completeShowCollection));
-		System.out.println();
+//		System.out.println("================= Test suggest prediction show collection =================");
+//		System.out.println(completeShowCollection.suggestPredictive(completeShowCollection));
+//		System.out.println();
 
 		
 		// Test the setters of ShowInWeek
