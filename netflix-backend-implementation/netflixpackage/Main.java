@@ -11,122 +11,130 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		// Test addNewShow method of ShowCollection class.
-		ShowCollection completeShowCollection = new ShowCollection();
-
-		// Test file reading at beginning of program.
-		System.out.println("================= Test file at end of program =================");
-		completeShowCollection.readFile();
-		System.out.println("...Reading done!");
+		// The purpose of the chunks of code below can be seen by their respective print statements.
+		// Also, some of the code is commented out because it's too much output for the Java console window.
+		
+		System.out.println("============================== Test ShowCollection Class ==============================");
 		System.out.println();
 		
-		// Create ShowInWeek objects for testing.
-		ShowInWeek topShow1 = new ShowInWeek("RANDOM!!!", "Films (English)", 1, "Me Time", "N/A", 56560000, 2);
-		ShowInWeek topShow2 = new ShowInWeek("MORE TESTING!!!", "Films (English)", 2, "Love in the Villa", "N/A", 41220000, 1);
-//		ShowInWeek topShow3 = new ShowInWeek("2022-09-04", "Films (English)", 3, "I Came By", "N/A", 30790000, 1);
-//		ShowInWeek topShow4 = new ShowInWeek("2022-09-04", "Films (English)", 4, "That's Amor", "N/A", 30790000, 1);
-//		ShowInWeek topShow5 = new ShowInWeek("2022-09-04", "Films (English)", 5, "Look Both Ways", "N/A", 30790000, 1);
-//		ShowInWeek topShow6 = new ShowInWeek("2022-09-04", "Films (English)", 6, "Day Shift", "N/A", 30790000, 1);
-//		ShowInWeek topShow7 = new ShowInWeek("2022-09-04", "Films (English)", 7, "The Next 365 Days", "N/A", 30790000, 1);
-//		ShowInWeek topShow8 = new ShowInWeek("2022-09-04", "Films (English)", 8, "Purple Hearts", "N/A", 30790000, 1);
-//		ShowInWeek topShow9 = new ShowInWeek("2022-09-04", "Films (English)", 9, "The Gray Man", "N/A", 30790000, 1);
-//		ShowInWeek topShow10 = new ShowInWeek("2022-09-11", "Films (English)", 10, "Collateral", "N/A", 30790000, 1);
-//		ShowInWeek topShow11 = new ShowInWeek("2022-09-04", "Films (Non-English)", 1, "Loving Adults", "N/A", 29940000, 2);
-//		ShowInWeek topShow12 = new ShowInWeek("2022-09-04", "Films (Non-English)", 2, "Under Her Control", "N/A", 15700000, 1);
-//		ShowInWeek topShow13 = new ShowInWeek("2022-09-04", "Films (Non-English)", 3, "Fenced In", "N/A", 9410000, 1);
-//		ShowInWeek topShow14 = new ShowInWeek("2022-09-04", "Films (Non-English)", 4, "Seoul Vibe", "N/A", 8670000, 2);
-//		ShowInWeek topShow15 = new ShowInWeek("2022-09-04", "Films (Non-English)", 5, "HIT: The First Case", "N/A", 7300000, 1);
-//		ShowInWeek topShow16 = new ShowInWeek("2022-09-04", "Films (Non-English)", 6, "The Figo Affair: The Transfer that Changed Football", "N/A", 3700000, 2);
-//		ShowInWeek topShow17 = new ShowInWeek("2022-09-04", "Films (Non-English)", 7, "School Life", "N/A", 3420000, 1);
-//		ShowInWeek topShow18 = new ShowInWeek("2022-09-04", "Films (Non-English)", 8, "Royalteen", "N/A", 3040000, 3);
-//		ShowInWeek topShow19 = new ShowInWeek("2022-09-04", "Films (Non-English)", 9, "Rise of the Legend", "N/A", 2630000, 1);
-//		ShowInWeek topShow20 = new ShowInWeek("2022-09-04", "Films (Non-English)", 10, "Watch Out, We're Mad", "N/A", 2580000, 2);
+		System.out.println("================= Test ShowCollection Default Constructor ======================");
+		ShowCollection completeShowCollection = new ShowCollection();
+		System.out.println(completeShowCollection);
+		System.out.println("... ShowCollection Default Constructor Done.");
+		System.out.println();
+		
+		// Test file reading at beginning of program.
+		System.out.println("================= Test File Reading =======================================");
+		completeShowCollection.readFile();
+		System.out.println("... Reading done.");
+		System.out.println();
+		
+		// completeShowCollection is now a ShowCollection instance loaded with data.
+		
+		System.out.println("================= Test Default ShowInWeek Constructor =====================");
+		ShowInWeek topShow1 = new ShowInWeek();
+		System.out.println("... ShowInWeek instance created.");
+		System.out.println();
+		
+		System.out.println("================= Test Overloaded ShowInWeek Constructor ==================");
+		ShowInWeek topShow2 = new ShowInWeek();
+		System.out.println("... ShowInWeek instance created.");
+		System.out.println();
+		
+		
+		// Test the setters and getters of ShowInWeek.
+		System.out.println("================= Test ShowInWeek Getters and Setters =====================");
+		System.out.println("Adding a new ShowInWeek object to the ShowCollection instance.");
+		System.out.println("Before: ");
+		System.out.println("Get week: " + topShow1.getWeek());
+		System.out.println("Get category: " + topShow1.getCategory());
+		System.out.println("Get weeklyRank: " + topShow1.getWeeklyRank());
+		System.out.println("Get showTitles: " + topShow1.getShowTitles());
+		System.out.println("Get seasonTitle: " + topShow1.getSeasonTitle());
+		System.out.println("Get weeklyHoursViewed: " + topShow1.getWeeklyHoursViewed());
+		System.out.println("Get cumulativeWeeksTop10: " + topShow1.getCumulativeWeeksTop10());
+		System.out.println();
+		
+		System.out.println("After: ");
+		topShow1.setWeek("03-14-15");
+		topShow1.setCategory("TV (English)");
+		topShow1.setWeeklyRank(9);
+		topShow1.setShowTitles("Transcendental Numbers: The Awesomeness of Pi");
+		topShow1.setSeasonTitle("N/A");
+		topShow1.setWeeklyHoursViewed(265358979);
+		topShow1.setCumulativeWeeksTop10(3);
 
+		System.out.println(topShow1);
+		System.out.println("Scroll to the bottom of the output text files to see this show's addition!");
+		System.out.println();
+		
 		completeShowCollection.addNewShow(topShow1);
-		completeShowCollection.addNewShow(topShow2);
-//		completeShowCollection.addNewShow(topShow3);
-//		completeShowCollection.addNewShow(topShow4);
-//		completeShowCollection.addNewShow(topShow5);
-//		completeShowCollection.addNewShow(topShow6);
-//		completeShowCollection.addNewShow(topShow7);
-//		completeShowCollection.addNewShow(topShow8);
-//		completeShowCollection.addNewShow(topShow9);
-//		completeShowCollection.addNewShow(topShow10);
-//		completeShowCollection.addNewShow(topShow11);
-//		completeShowCollection.addNewShow(topShow12);
-//		completeShowCollection.addNewShow(topShow13);
-//		completeShowCollection.addNewShow(topShow14);
-//		completeShowCollection.addNewShow(topShow15);
-//		completeShowCollection.addNewShow(topShow16);
-//		completeShowCollection.addNewShow(topShow17);
-//		completeShowCollection.addNewShow(topShow18);
-//		completeShowCollection.addNewShow(topShow19);
-//		completeShowCollection.addNewShow(topShow20);
-		// Testing toString and addNewShow methods.
-		System.out.println("================= Test toString() and addNewShow() methods =================");
+
+		System.out.println("================= Test toString() and addNewShow() ========================");
+		System.out.println(completeShowCollection);
+		System.out.println("Note: A ShowCollection instance calls the ShowInWeek toString method. "
+				+ "So, both ShowCollection and ShowInWeek toString() methods are confirmed to work properly.");
+		System.out.println();
+		
+		System.out.println("================= Test PurgeShow Method ===================================");
+		completeShowCollection.purgeShow("Me Time");
 		System.out.println(completeShowCollection);
 		System.out.println();
 		
-		// Test purgeShow method of ShowCollection class.
-//		System.out.println("================= Test purgeShow method of ShowCollection class =================");
-//		completeShowCollection.purgeShow("Me Time");
-//		System.out.println(completeShowCollection);
-//		System.out.println();
-		
-		// Test unpurgeShow method of ShowCollection class.
-//		System.out.println("================= Test unpurgeShow method of ShowCollection class =================");
-//		completeShowCollection.unpurgeShow("Me Time");
-//		System.out.println(completeShowCollection);
-//		System.out.println();
+		System.out.println("================= Test unpurgeShow() Method ===============================");
+		completeShowCollection.unpurgeShow("Me Time");
+		System.out.println(completeShowCollection);
+		System.out.println();
 
-		// Test the suggestRandomShow
-//		System.out.println("================= Test suggest random show =================");
-//		System.out.println(completeShowCollection.suggestRandomShow());
-//		System.out.println();
+		System.out.println("================= Test suggestRandomShow() ================================");
+		System.out.println(completeShowCollection.suggestRandomShow());
+		System.out.println();
 		
-		// Test the suggest prediction given a single ShowInWeek.
-//		System.out.println("================= Test suggest prediction single show =================");
-//		System.out.println(completeShowCollection.suggestPredictive(topShow1));
-//		System.out.println();
+		System.out.println("================= Test suggestPredictive(), Given a Single Show ===========");
+		System.out.println(completeShowCollection.suggestPredictive(topShow1));
+		System.out.println();
 		
-		// Test the suggest prediction given a ShowCollection.
-//		System.out.println("================= Test suggest prediction show collection =================");
-//		System.out.println(completeShowCollection.suggestPredictive(completeShowCollection));
-//		System.out.println();
+		System.out.println("================= Test suggestPredictive(), Given a Single Show ===========");
+		System.out.println(completeShowCollection.suggestPredictive(completeShowCollection));
+		System.out.println();
 		
-		// Test the getShows given a String of dateweek.
-//		System.out.println("================= Test get shows given a week =================");
-//		System.out.println(completeShowCollection.getShows("2022-09-11"));
-//		System.out.println();
-//		
+		System.out.println("================= Test getShows() Given a Single Week =====================");
+		System.out.println(completeShowCollection.getShows("2022-09-04"));
+		System.out.println();
 		
-		// Test file writing when desired.
-//		System.out.println("================= Test file writing during program =================");
-//		completeShowCollection.writeFile("./blank.txt");			// The "home" that Java looks for is the root of the project.
-//		System.out.println("...Single write done!");
-//		System.out.println();
+		System.out.println("================= Test File Writing During Program Running ================");
+		completeShowCollection.writeFile("./singleWriteData.txt");			// The "home" that Java looks for is the root of the project.
+		System.out.println("... Single write done! (Look for \"singleWriteData.txt\")");
+		System.out.println();
 		
 		// Test file writing at end of program.
-		System.out.println("================= Test file at end of program =================");
+		System.out.println("================= Test File Writing At End of Program =====================");
 		completeShowCollection.writeFile();
-		System.out.println("...Final write done!");
+		System.out.println("... Final write done! (Look for \"outputData.txt\")");
 		System.out.println();
 		
 		
-		//==================== ShowCollection Testing ====================
 		
-		System.out.println("================= ShowCollection Testing: =================");
+		
+		
+		System.out.println("================================ Test ShowInWeek Class ================================");
 		System.out.println();
 		
-		
-		//==================== ShowInWeek Testing ====================
-		
-		System.out.println("================= ShowInWeek Testing: =================");
+		System.out.println("Note: ShowInWeek constructor, getters, and setters were tested above, so this section tests the rest of the ShowInWeek class.");
 		System.out.println();
-
+		
+		System.out.println("===== Test ShowInWeek Equals Method ===========================");
 		ShowInWeek show1 = new ShowInWeek("2022-09-04", "Films (English)", 3, "I Came By", "N/A", 30790000, 1);
 		ShowInWeek show2 = new ShowInWeek("2022-09-04", "Films (English)", 4, "That's Amor", "N/A", 30790000, 1);
 		ShowInWeek show3 = new ShowInWeek("2022-09-04", "Films (English)", 4, "That's Amor", "N/A", 30790000, 1);
+		System.out.println("... ShowInWeek object instantiation done.");
+		System.out.println();
+		
+		System.out.println("Show 1: " + show1);
+		System.out.println("Show 2: " + show2);
+		System.out.println("Show 3: " + show3);
+		
+		System.out.println();
 		
 		System.out.println("Comparing show1 and show2 [expect false]: " + show1.equals(show2));
 		System.out.println("Comparing show2 and show3 [expect true]: " + show2.equals(show3));
@@ -136,48 +144,3 @@ public class Main {
 
 }
 
-
-/* Code Dump
-
-		ShowInWeek topShow3 = new ShowInWeek("2022-09-04", "Films (English)", 3, "I Came By", "N/A", 30790000, 1);
-		ShowInWeek topShow4 = new ShowInWeek("2022-09-04", "Films (English)", 4, "That's Amor", "N/A", 30790000, 1);
-		ShowInWeek topShow5 = new ShowInWeek("2022-09-04", "Films (English)", 5, "Look Both Ways", "N/A", 30790000, 1);
-		ShowInWeek topShow6 = new ShowInWeek("2022-09-04", "Films (English)", 6, "Day Shift", "N/A", 30790000, 1);
-		ShowInWeek topShow7 = new ShowInWeek("2022-09-04", "Films (English)", 7, "The Next 365 Days", "N/A", 30790000, 1);
-		ShowInWeek topShow8 = new ShowInWeek("2022-09-04", "Films (English)", 8, "Purple Hearts", "N/A", 30790000, 1);
-		ShowInWeek topShow9 = new ShowInWeek("2022-09-04", "Films (English)", 9, "The Gray Man", "N/A", 30790000, 1);
-		ShowInWeek topShow10 = new ShowInWeek("2022-09-04", "Films (English)", 10, "Collateral", "N/A", 30790000, 1);
-		ShowInWeek topShow11 = new ShowInWeek("2022-09-04", "Films (Non-English)", 1, "Loving Adults", "N/A", 29940000, 2);
-		ShowInWeek topShow12 = new ShowInWeek("2022-09-04", "Films (Non-English)", 2, "Under Her Control", "N/A", 15700000, 1);
-		ShowInWeek topShow13 = new ShowInWeek("2022-09-04", "Films (Non-English)", 3, "Fenced In", "N/A", 9410000, 1);
-		ShowInWeek topShow14 = new ShowInWeek("2022-09-04", "Films (Non-English)", 4, "Seoul Vibe", "N/A", 8670000, 2);
-		ShowInWeek topShow15 = new ShowInWeek("2022-09-04", "Films (Non-English)", 5, "HIT: The First Case", "N/A", 7300000, 1);
-		ShowInWeek topShow16 = new ShowInWeek("2022-09-04", "Films (Non-English)", 6, "The Figo Affair: The Transfer that Changed Football", "N/A", 3700000, 2);
-		ShowInWeek topShow17 = new ShowInWeek("2022-09-04", "Films (Non-English)", 7, "School Life", "N/A", 3420000, 1);
-		ShowInWeek topShow18 = new ShowInWeek("2022-09-04", "Films (Non-English)", 8, "Royalteen", "N/A", 3040000, 3);
-		ShowInWeek topShow19 = new ShowInWeek("2022-09-04", "Films (Non-English)", 9, "Rise of the Legend", "N/A", 2630000, 1);
-		ShowInWeek topShow20 = new ShowInWeek("2022-09-04", "Films (Non-English)", 10, "Watch Out, We're Mad", "N/A", 2580000, 2);
-
-
-
-
-		completeShowCollection.addNewShow(topShow3);
-		completeShowCollection.addNewShow(topShow4);
-		completeShowCollection.addNewShow(topShow5);
-		completeShowCollection.addNewShow(topShow6);
-		completeShowCollection.addNewShow(topShow7);
-		completeShowCollection.addNewShow(topShow8);
-		completeShowCollection.addNewShow(topShow9);
-		completeShowCollection.addNewShow(topShow10);
-		completeShowCollection.addNewShow(topShow11);
-		completeShowCollection.addNewShow(topShow12);
-		completeShowCollection.addNewShow(topShow13);
-		completeShowCollection.addNewShow(topShow14);
-		completeShowCollection.addNewShow(topShow15);
-		completeShowCollection.addNewShow(topShow16);
-		completeShowCollection.addNewShow(topShow17);
-		completeShowCollection.addNewShow(topShow18);
-		completeShowCollection.addNewShow(topShow19);
-		completeShowCollection.addNewShow(topShow20);
-
-*/

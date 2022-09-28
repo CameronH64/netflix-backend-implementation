@@ -1,3 +1,6 @@
+// Cameron Holbrook
+// CSCI 3381
+
 package netflixpackage;
 
 import java.io.BufferedReader;
@@ -17,18 +20,25 @@ import java.util.Iterator;
 public class ShowCollection {
 
 	private ArrayList<ShowInWeek> showStorage = new ArrayList<ShowInWeek>();
-	private String fileName;
-
+	private String readFileName;
+	private String writeFileName;
+	
+	// Arguments: None
+	// Return: None
 	public ShowCollection() {
 		showStorage = new ArrayList<ShowInWeek>();
-		fileName = "./partialData.txt";
+		readFileName = "./inputData.txt";
+		writeFileName = "./outputData.txt";
 	}
-
+	
+	// Arguments: ShowInWeek
+	// Return: None
 	public void addNewShow(ShowInWeek newShowInWeek) {
 		showStorage.add(newShowInWeek);
-		fileName = "./partialData.txt";
 	}
-
+	
+	// Arguments: String
+	// Return: None
 	public void purgeShow(String showToPurge) {
 		// Append " [PURGED]" to end of each show title.
 
@@ -38,10 +48,12 @@ public class ShowCollection {
 			}
 		}
 	}
-
+	
+	// Arguments: String
+	// Return: None
 	public void unpurgeShow(String showToUnpurge) {
-		// Remove " [PURGED]" from the end of each show title (that is chosen to be unpurged);
 
+		// Remove " [PURGED]" from the end of each show title (that is chosen to be unpurged);
 		for (ShowInWeek showInWeek : showStorage) {
 			if (showInWeek.getShowTitles().equals(showToUnpurge + " [PURGED]")) {
 				showInWeek.setShowTitles(showInWeek.getShowTitles().replace(" [PURGED]", ""));		
@@ -49,6 +61,8 @@ public class ShowCollection {
 		}
 	}
 
+	// Arguments: None
+	// Return: String
 	public String suggestRandomShow() {
 
 		// Generate a number the size of the ShowCollection instance.
@@ -63,7 +77,8 @@ public class ShowCollection {
 
 	}
 
-	// Suggest based on a single given show.
+	// Arguments: ShowInWeek
+	// Return: String
 	public String suggestPredictive(ShowInWeek show) {
 
 		// Design to suggest a show given a single show:
@@ -73,7 +88,7 @@ public class ShowCollection {
 		// This will be used as a pool to pull from later.
 		ArrayList<ShowInWeek> categoryList = new ArrayList<ShowInWeek>();		
 		int count = 0;
-
+		
 		// Filter out english or non-english
 		if (show.getCategory().contains("(English)")) {
 			for (ShowInWeek showInWeek : showStorage) {
@@ -103,7 +118,8 @@ public class ShowCollection {
 
 	}
 
-	// Suggest based on a set of shows.
+	// Arguments: ShowCollection
+	// Return: ShowCollection
 	public ShowCollection suggestPredictive(ShowCollection shows) {
 		// Design to suggest a show given a collection of shows:
 		// Must be greater than or equal to the average of the whole weeklyHoursViewed of collection shows.
@@ -128,6 +144,8 @@ public class ShowCollection {
 		return suggestionList;
 	}
 
+	// Arguments: String
+	// Return: ArrayList<ShowInWeek>
 	public ArrayList<ShowInWeek> getShows(String week) {
 
 		// Create an ArrayList that holds shows of specified week.
@@ -143,20 +161,14 @@ public class ShowCollection {
 		return categoryList;			// Need to return a ShowCollection (this is an ArrayList).
 	}
 
-	public ArrayList<ShowInWeek> getShowStorage() {
-		return showStorage;
-	}
-
-	public void setShowStorage(ArrayList<ShowInWeek> showStorage) {
-		this.showStorage = showStorage;
-	}
-
+	// Arguments: None
+	// Return: String
 	public String toString() {
 
-		String toReturn = "ShowCollection: [\n";
+		String toReturn = "ShowCollection: [";
 
 		for (ShowInWeek showInWeek : showStorage) {
-			toReturn += showInWeek.toString()+"";
+			toReturn += showInWeek.toString();
 		}
 
 		toReturn += "]";
@@ -172,29 +184,32 @@ public class ShowCollection {
 
 	// =========================== File Reading and Writing ===========================
 
+	// Arguments: None
+	// Return: None
 	public void readFile() {
 
 		BufferedReader lineReader = null;
 
 		try {
-			FileReader fileRead = new FileReader(fileName);				// Set the file to read from here.
+			FileReader fileRead = new FileReader(readFileName);				// Set the file to read from here.
 			lineReader = new BufferedReader(fileRead);
 			String line = null;
 
 			while ((line = lineReader.readLine())!=null) {
 				try {
-					String week = lineReader.readLine();					// Read each line.
+					String week = line;					// Use line because it contains the week.
 					String category = lineReader.readLine();
 					String weeklyRank = lineReader.readLine();
 					String showTitles = lineReader.readLine();
 					String seasonTitle = lineReader.readLine();
-					String weeklyHoursViewed = lineReader.readLine();			
+					String weeklyHoursViewed = lineReader.readLine();
 					String cumulativeWeeks = lineReader.readLine();
 
 					showStorage.add(new ShowInWeek(week, category, Integer.parseInt(weeklyRank), showTitles, seasonTitle, 
 							Integer.parseInt(weeklyHoursViewed), Integer.parseInt(cumulativeWeeks)));
 					
 				} catch (Exception e) {
+					e.printStackTrace();
 					System.err.println("Error: Unknown person type.");
 				}
 			}
@@ -202,12 +217,12 @@ public class ShowCollection {
 			System.err.println("there was a problem with the file reader, try different read type.");
 
 			try {
-				lineReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName.substring(1))));
+				lineReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(readFileName.substring(1))));
 				String line = null;
 
 				while ((line = lineReader.readLine())!=null) {
 					try {
-						String week = lineReader.readLine();					// Read each line.
+						String week = line;							// Use line because it contains the week.
 						String category = lineReader.readLine();
 						String weeklyRank = lineReader.readLine();
 						String showTitles = lineReader.readLine();
@@ -243,22 +258,28 @@ public class ShowCollection {
 		}
 	}
 
+	// Arguments: None
+	// Return: None
 	public void writeFile () {
 		// overloaded method: this calls doWrite with file used to read data
 		// use this for saving data between runs
-		doWrite(fileName);
+		doWrite(writeFileName);
 	}
 
-	public void writeFile(String fileName) {
+	// Arguments: None
+	// Return: None
+	public void writeFile(String writeFileName) {
 		// overloaded method: this calls doWrite with different file name 
 		// use this for testing write
-		doWrite(fileName);
+		doWrite(writeFileName);
 	}
 
-	private void doWrite(String fileName) {
+	// Arguments: String
+	// Return: None
+	private void doWrite(String writeFileName) {
 		// this method writes all of the data in the ShowCollection array to a file
 		try	{
-			FileWriter write = new FileWriter(fileName);
+			FileWriter write = new FileWriter(writeFileName);
 			BufferedWriter outputFile = new BufferedWriter(write);			
 
 			Iterator<ShowInWeek> showStorageIterator = showStorage.iterator();
@@ -289,9 +310,8 @@ public class ShowCollection {
 
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Didn't save to " + fileName);
-
+			e.printStackTrace();			// Really nifty debugging code.
+			System.err.println("Didn't save to " + writeFileName);
 		}
 	}
 }

@@ -1,3 +1,6 @@
+// Cameron Holbrook
+// CSCI 3381
+
 package netflixpackage;
 
 import java.util.Iterator;
@@ -12,23 +15,25 @@ public class ShowInWeek {
 	private String 		seasonTitle;
 	private int 		weeklyHoursViewed;
 	private int 		cumulativeWeeksTop10;
-	
-	// Default constructor
+
+	// Arguments: None
+	// Return: None
 	public ShowInWeek() {
-		
-		week = "Week Not Set";
+
+		week = "Undefined Week";
 		category = "Undefined Category";
 		weeklyRank = 0;
-		showTitles = "Show Titles Not Set";
-		seasonTitle = "Season Titles Not Set";
+		showTitles = "Undefined Show Titles";
+		seasonTitle = "Undefined Season Title";
 		weeklyHoursViewed = 0;
 		cumulativeWeeksTop10 = 0;
 	}
-	
-	// Overloaded constructor
+
+	// Arguments: String, String, int, String, String, int, int
+	// Return: None
 	public ShowInWeek(String week, String category, int weeklyRank, String showTitles, String seasonTitle,
 			int weeklyHoursViewed, int cumulativeWeeksTop10) {
-		
+
 		this.week = week;
 		this.category = category;
 		this.weeklyRank = weeklyRank;
@@ -37,77 +42,36 @@ public class ShowInWeek {
 		this.weeklyHoursViewed = weeklyHoursViewed;
 		this.cumulativeWeeksTop10 = cumulativeWeeksTop10;
 	}
+
+	// Getters and Setters
+	public String getWeek() { return week; }
+	public String getCategory() { return category; }
+	public int getWeeklyRank() { return weeklyRank; }
+	public String getShowTitles() {	return showTitles; }
+	public String getSeasonTitle() { return seasonTitle; }
+	public int getWeeklyHoursViewed() {	return weeklyHoursViewed; }
+	public int getCumulativeWeeksTop10() { return cumulativeWeeksTop10; }
 	
-	
-	// Getters and setters for private data members.
-	public String getWeek() {
-		return week;
-	}
+	public void setWeek(String week) { this.week = week; }
+	public void setCategory(String category) { this.category = category; }
+	public void setWeeklyRank(int weeklyRank) {	this.weeklyRank = weeklyRank; }
+	public void setSeasonTitle(String seasonTitle) { this.seasonTitle = seasonTitle; }
+	public void setShowTitles(String showTitles) { this.showTitles = showTitles; }
+	public void setWeeklyHoursViewed(int weeklyHoursViewed) { this.weeklyHoursViewed = weeklyHoursViewed; }
+	public void setCumulativeWeeksTop10(int cumulativeWeeksTop10) {	this.cumulativeWeeksTop10 = cumulativeWeeksTop10; }
 
-	public void setWeek(String week) {
-		this.week = week;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public int getWeeklyRank() {
-		return weeklyRank;
-	}
-
-	public void setWeeklyRank(int weeklyRank) {
-		this.weeklyRank = weeklyRank;
-	}
-
-	public String getShowTitles() {
-		return showTitles;
-	}
-
-	public void setShowTitles(String showTitles) {
-		this.showTitles = showTitles;
-	}
-
-	public String getSeasonTitle() {
-		return seasonTitle;
-	}
-
-	public void setSeasonTitle(String seasonTitle) {
-		this.seasonTitle = seasonTitle;
-	}
-
-	public int getWeeklyHoursViewed() {
-		return weeklyHoursViewed;
-	}
-
-	public void setWeeklyHoursViewed(int weeklyHoursViewed) {
-		this.weeklyHoursViewed = weeklyHoursViewed;
-	}
-
-	public int getCumulativeWeeksTop10() {
-		return cumulativeWeeksTop10;
-	}
-
-	public void setCumulativeWeeksTop10(int cumulativeWeeksTop10) {
-		this.cumulativeWeeksTop10 = cumulativeWeeksTop10;
-	}
-	
-	// toString method for outputting class instances intuitively.
+	// Arguments: None
+	// Return: String
 	public String toString() {
 		return "ShowInWeek [week=" + week + ", category=" + category + ", weeklyRank=" + weeklyRank + ", showTitles="
 				+ showTitles + ", seasonTitle=" + seasonTitle + ", weeklyHoursViewed=" + weeklyHoursViewed
 				+ ", cumulativeWeeksTop10=" + cumulativeWeeksTop10 + "]\n";
 	}
-	
-	// Week variable, show variable, concatenate
+
+	// Arguments: ShowInWeek
+	// Return: boolean
 	public boolean equals(ShowInWeek show) {
-		
-		return ((getWeek()+getShowTitles()).equals(show.getWeek()+show.getShowTitles()));			// May need to work on this...
-		
+		return ((getWeek()+getShowTitles()).equals(show.getWeek()+show.getShowTitles()));
 	}
-	
+
 }
