@@ -100,7 +100,7 @@ public class ShowInWeek {
 	public String toString() {
 		return "ShowInWeek [week=" + week + ", category=" + category + ", weeklyRank=" + weeklyRank + ", showTitles="
 				+ showTitles + ", seasonTitle=" + seasonTitle + ", weeklyHoursViewed=" + weeklyHoursViewed
-				+ ", cumulativeWeeksTop10=" + cumulativeWeeksTop10 + "]";
+				+ ", cumulativeWeeksTop10=" + cumulativeWeeksTop10 + "]\n";
 	}
 	
 	// Week variable, show variable, concatenate
