@@ -143,7 +143,6 @@ public class ShowCollection {
 
 		ShowCollection suggestionList = new ShowCollection();
 		int hoursViewedAverage = 0;
-		Iterator<ShowInWeek> showIterator = showStorage.iterator();
 		int max = 0;
 
 		// Cycle through shows showStorage ArrayList data member; add up each weeklyHoursViewed.
@@ -157,16 +156,11 @@ public class ShowCollection {
 
 		// Cycle through shows showStorage, returning first 5 shows with greater than average viewing time.
 		// I just couldn't quite get this right, though.
-		try {
-			while (showIterator.hasNext() && max < 5) {
-				if (showIterator.next().getWeeklyHoursViewed() >= hoursViewedAverage && !shows.showStorage.contains(showIterator.next())) {
-					suggestionList.addNewShow(showIterator.next());
-					max++;
-				}
+		for (ShowInWeek showInWeek : showStorage) {
+			if (showInWeek.getWeeklyHoursViewed() >= hoursViewedAverage && max < 5) {
+				suggestionList.addNewShow(showInWeek);
+				max++;
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return suggestionList;
 	}

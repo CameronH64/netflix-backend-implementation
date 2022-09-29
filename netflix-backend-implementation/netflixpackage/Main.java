@@ -41,7 +41,7 @@ public class Main {
 		ShowInWeek topShow2 = new ShowInWeek("05-02-12", "Films (English)", 7, "Playing in the 4th Dimension", "N/A", 11235813, 7);
 		System.out.println("... ShowInWeek instance created.");
 		System.out.println();
-		// topShow2 is used later in the suggestPredictive() method, given a collection of shows.
+		// topShow2 is used later in the suggestPredictive() method, given a ShowInWeek.
 		
 		// Test the setters and getters of ShowInWeek.
 		System.out.println("================= Test ShowInWeek Getters and Setters =====================");
@@ -72,7 +72,7 @@ public class Main {
 		completeShowCollection.addNewShow(topShow1);
 
 		System.out.println("================= Test toString() and addNewShow() ========================");
-//		System.out.println(completeShowCollection);
+		System.out.println(completeShowCollection);
 		System.out.println("Note: A ShowCollection instance calls the ShowInWeek toString method. "
 				+ "So, both ShowCollection and ShowInWeek toString() methods are confirmed to work properly.");
 		System.out.println();
@@ -149,7 +149,6 @@ public class Main {
 		
 		System.out.println("Comparing show1 and show2 [expect false]: " + show1.equals(show2));
 		System.out.println("Comparing show2 and show3 [expect true]: " + show2.equals(show3));
-		
 		
 	}
 
