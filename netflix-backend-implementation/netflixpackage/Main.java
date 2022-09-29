@@ -12,7 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// The purpose of the chunks of code below can be seen by their respective print statements.
-		// Also, some of the code is commented out because it's too much output for the Java console window.
+		// Also, some of the code is commented out because when reading the completeDataSet.txt file, it's too much output for the Java console window.
+		// Those lines can be uncommented when reading smaller files, however.
 		
 		System.out.println("============================== Test ShowCollection Class ==============================");
 		System.out.println();
@@ -37,10 +38,10 @@ public class Main {
 		System.out.println();
 		
 		System.out.println("================= Test Overloaded ShowInWeek Constructor ==================");
-		ShowInWeek topShow2 = new ShowInWeek();
+		ShowInWeek topShow2 = new ShowInWeek("05-02-12", "Films (English)", 7, "Playing in the 4th Dimension", "N/A", 11235813, 7);
 		System.out.println("... ShowInWeek instance created.");
 		System.out.println();
-		
+		// topShow2 is used later in the suggestPredictive() method, given a collection of shows.
 		
 		// Test the setters and getters of ShowInWeek.
 		System.out.println("================= Test ShowInWeek Getters and Setters =====================");
@@ -56,12 +57,12 @@ public class Main {
 		System.out.println();
 		
 		System.out.println("After: ");
-		topShow1.setWeek("03-14-15");
+		topShow1.setWeek("03-14-1592");
 		topShow1.setCategory("TV (English)");
 		topShow1.setWeeklyRank(9);
 		topShow1.setShowTitles("Transcendental Numbers: The Awesomeness of Pi");
 		topShow1.setSeasonTitle("N/A");
-		topShow1.setWeeklyHoursViewed(265358979);
+		topShow1.setWeeklyHoursViewed(65358979);
 		topShow1.setCumulativeWeeksTop10(3);
 
 		System.out.println(topShow1);
@@ -71,7 +72,7 @@ public class Main {
 		completeShowCollection.addNewShow(topShow1);
 
 		System.out.println("================= Test toString() and addNewShow() ========================");
-		System.out.println(completeShowCollection);
+//		System.out.println(completeShowCollection);
 		System.out.println("Note: A ShowCollection instance calls the ShowInWeek toString method. "
 				+ "So, both ShowCollection and ShowInWeek toString() methods are confirmed to work properly.");
 		System.out.println();
@@ -90,12 +91,22 @@ public class Main {
 		System.out.println(completeShowCollection.suggestRandomShow());
 		System.out.println();
 		
-		System.out.println("================= Test suggestPredictive(), Given a Single Show ===========");
-		System.out.println(completeShowCollection.suggestPredictive(topShow1));
+		System.out.println("================= Test suggestPredictive(), Given a Single ShowInWeek ===========");
+		System.out.println(completeShowCollection.suggestPredictive(topShow2));
 		System.out.println();
 		
-		System.out.println("================= Test suggestPredictive(), Given a Single Show ===========");
-		System.out.println(completeShowCollection.suggestPredictive(completeShowCollection));
+		System.out.println("================= Test suggestPredictive(), Given ShowCollection ===========");
+		ShowCollection subCollection = new ShowCollection();
+		ShowInWeek suggestionShow1 = new ShowInWeek("2022-09-04", "Films (English)", 1, "Me Time", "N/A", 56560000, 2);
+		ShowInWeek suggestionShow2 = new ShowInWeek("2022-09-04", "TV (English)", 1, "Echoes", "Echoes: Limited Series", 36580000, 3);
+		ShowInWeek suggestionShow3 = new ShowInWeek("2022-08-21", "TV (English)", 6, "Manifest", "Manifest: Season 1", 10000000, 16);
+		subCollection.addNewShow(suggestionShow1);
+		subCollection.addNewShow(suggestionShow2);
+		subCollection.addNewShow(suggestionShow3);
+		System.out.println("... SubCollection Created.");
+		System.out.println();
+		
+		System.out.println(completeShowCollection.suggestPredictive(subCollection));
 		System.out.println();
 		
 		System.out.println("================= Test getShows() Given a Single Week =====================");

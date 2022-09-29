@@ -22,7 +22,7 @@ public class ShowCollection {
 	private ArrayList<ShowInWeek> showStorage = new ArrayList<ShowInWeek>();
 	private String readFileName;
 	private String writeFileName;
-	
+
 	// Arguments: None
 	// Return: None
 	public ShowCollection() {
@@ -30,13 +30,13 @@ public class ShowCollection {
 		readFileName = "./inputData.txt";
 		writeFileName = "./outputData.txt";
 	}
-	
+
 	// Arguments: ShowInWeek
 	// Return: None
 	public void addNewShow(ShowInWeek newShowInWeek) {
 		showStorage.add(newShowInWeek);
 	}
-	
+
 	// Arguments: String
 	// Return: None
 	public void purgeShow(String showToPurge) {
@@ -48,7 +48,7 @@ public class ShowCollection {
 			}
 		}
 	}
-	
+
 	// Arguments: String
 	// Return: None
 	public void unpurgeShow(String showToUnpurge) {
@@ -82,25 +82,42 @@ public class ShowCollection {
 	public String suggestPredictive(ShowInWeek show) {
 
 		// Design to suggest a show given a single show:
-		// Must be the same category (which is to say, language)
+		// Must be the same category (which to say, TV or Films and language).
 
 		// Create an ArrayList object of only same category as given show.
 		// This will be used as a pool to pull from later.
 		ArrayList<ShowInWeek> categoryList = new ArrayList<ShowInWeek>();		
 		int count = 0;
-		
-		// Filter out english or non-english
-		if (show.getCategory().contains("(English)")) {
+		String showCategory = show.getCategory();
+
+		// Filter out category
+		if (showCategory.contains("TV (English)")) {
 			for (ShowInWeek showInWeek : showStorage) {
-				if (showInWeek.getCategory().contains("(English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
+				if (showInWeek.getCategory().contains("TV (English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
 					categoryList.add(showInWeek);
 					count++;
 				}
 			}
 
-		} else if (show.getCategory().contains("(Non-English)")) {
+		} else if (showCategory.contains("TV (Non-English)")) {
 			for (ShowInWeek showInWeek : showStorage) {
-				if (showInWeek.getCategory().contains("(Non-English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
+				if (showInWeek.getCategory().contains("TV (Non-English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
+					categoryList.add(showInWeek);
+					count++;
+				}
+			}
+		} else if (showCategory.contains("Films (English)")) {
+
+			for (ShowInWeek showInWeek : showStorage) {
+				if (showInWeek.getCategory().contains("Films (English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
+					categoryList.add(showInWeek);
+					count++;
+				}
+			}
+		} else if (showCategory.contains("Films (Non-English)")) {
+
+			for (ShowInWeek showInWeek : showStorage) {
+				if (showInWeek.getCategory().contains("Films (Non-English)") && !showInWeek.getShowTitles().equals(show.getShowTitles())) {
 					categoryList.add(showInWeek);
 					count++;
 				}
@@ -126,6 +143,8 @@ public class ShowCollection {
 
 		ShowCollection suggestionList = new ShowCollection();
 		int hoursViewedAverage = 0;
+		Iterator<ShowInWeek> showIterator = showStorage.iterator();
+		int max = 0;
 
 		// Cycle through shows showStorage ArrayList data member; add up each weeklyHoursViewed.
 		for (ShowInWeek showInWeek : shows.showStorage) {
@@ -133,14 +152,22 @@ public class ShowCollection {
 		}
 
 		hoursViewedAverage /= shows.showStorage.size();
+//		System.out.println("shows' showStorage Size: " + shows.showStorage.size());		// Personal debugging
+//		System.out.println("Shows Average: " + hoursViewedAverage);		
 
-		// Cycle through shows showStorage
-		for (ShowInWeek showInWeek : shows.showStorage) {
-			if (showInWeek.getWeeklyHoursViewed() >= hoursViewedAverage) {
-				suggestionList.addNewShow(showInWeek);
+		// Cycle through shows showStorage, returning first 5 shows with greater than average viewing time.
+		// I just couldn't quite get this right, though.
+		try {
+			while (showIterator.hasNext() && max < 5) {
+				if (showIterator.next().getWeeklyHoursViewed() >= hoursViewedAverage && !shows.showStorage.contains(showIterator.next())) {
+					suggestionList.addNewShow(showIterator.next());
+					max++;
+				}
 			}
-		}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return suggestionList;
 	}
 
@@ -165,7 +192,7 @@ public class ShowCollection {
 	// Return: String
 	public String toString() {
 
-		String toReturn = "ShowCollection: [";
+		String toReturn = "ShowCollection: [\n";
 
 		for (ShowInWeek showInWeek : showStorage) {
 			toReturn += showInWeek.toString();
@@ -207,7 +234,7 @@ public class ShowCollection {
 
 					showStorage.add(new ShowInWeek(week, category, Integer.parseInt(weeklyRank), showTitles, seasonTitle, 
 							Integer.parseInt(weeklyHoursViewed), Integer.parseInt(cumulativeWeeks)));
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.err.println("Error: Unknown person type.");
